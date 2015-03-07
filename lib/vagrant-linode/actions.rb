@@ -1,6 +1,16 @@
-require 'pathname'
-
-require 'vagrant/action/builder'
+require 'vagrant-linode/actions/check_state'
+require 'vagrant-linode/actions/create'
+require 'vagrant-linode/actions/destroy'
+require 'vagrant-linode/actions/power_off'
+require 'vagrant-linode/actions/power_on'
+require 'vagrant-linode/actions/rebuild'
+require 'vagrant-linode/actions/reload'
+require 'vagrant-linode/actions/setup_hostname'
+require 'vagrant-linode/actions/setup_user'
+require 'vagrant-linode/actions/setup_sudo'
+require 'vagrant-linode/actions/setup_key'
+require 'vagrant-linode/actions/sync_folders'
+require 'vagrant-linode/actions/modify_provision_path'
 
 module VagrantPlugins
   module Linode
@@ -116,6 +126,7 @@ module VagrantPlugins
               b.use Create
               b.use SetupSudo
               b.use SetupUser
+              b.use SetupHostname
               b.use Provision
             end
           end
@@ -167,6 +178,8 @@ module VagrantPlugins
               b.use Rebuild
               b.use SetupSudo
               b.use SetupUser
+            when :not_created, false
+              b.use SetupHostname
               b.use Provision
             when :not_created, false
               env[:ui].info I18n.t('vagrant_linode.info.not_created')
