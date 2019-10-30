@@ -17,7 +17,7 @@ Gem::Specification.new do |gem|
   gem.add_runtime_dependency 'log4r', '~> 1.1'
 
   gem.add_development_dependency 'rake', '~> 13.0.0'
-  gem.add_development_dependency 'rspec', '~> 3.8.0'
+  gem.add_development_dependency 'rspec', '~> 3.9.0'
   gem.add_development_dependency 'aruba', '~> 0.14'
 
   gem.files         = `git ls-files`.split($INPUT_RECORD_SEPARATOR)
